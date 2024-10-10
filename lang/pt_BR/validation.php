@@ -69,6 +69,7 @@ return [
         'array'   => 'O campo :attribute deve conter :value itens ou mais.',
     ],
     'hex_color'            => 'O campo :attribute deve ser uma cor hexadecimal válida.',
+    'hours'                 => 'Horas',
     'image'                => 'O campo :attribute deve ser uma imagem.',
     'in'                   => 'O campo :attribute selecionado é inválido.',
     'in_array'             => 'O campo :attribute não existe em :other.',

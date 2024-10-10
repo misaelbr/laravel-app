@@ -18,6 +18,8 @@ class Create extends Component
     #[Rule(['required', 'numeric', 'min:1'])]
     public int $hours = 0;
 
+    public bool $agree = false;
+
     public function render()
     {
         return view('livewire.proposals.create');
@@ -26,9 +28,20 @@ class Create extends Component
     public function save()
     {
 
+
+        $this->validate();
+
+        if (!$this->agree) {
+            $this->addError('agree', 'Você precisa concordar com os termos de uso.');
+
+            return;
+        }
+
         $this->project->proposals()->updateOrCreate(
             ['email' => $this->email],
             ['hours' => $this->hours]
         );
+
+        $this->modal = false;
     }
 }
