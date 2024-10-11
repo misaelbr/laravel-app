@@ -1,4 +1,4 @@
-@props(['position'])
+@props(['position','status'])
 
 
 <div @class([ "flex items-center justify-center rounded-full w-[40px] h-[40px]" , "bg-[#FEF3C7] text-[#F59E0B]"=>
@@ -11,6 +11,14 @@
     @if($position
     < 3) <x-ui.icons.trophy class="w-[24px] h-[24px]" />
     @else
+    @if($status == 'up')
+    <x-ui.icons.arrow-up class="w-[24px] h-[24px]" />
+
+    @elseif($status == 'down')
+    <x-ui.icons.arrow-down class="w-[24px] h-[24px]" />
+    @else
     <x-ui.icons.minus class="w-[24px] h-[24px]" />
+    @endif
+
     @endif
 </div>

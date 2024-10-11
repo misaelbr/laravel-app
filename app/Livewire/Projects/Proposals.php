@@ -20,6 +20,7 @@ class Proposals extends Component
 
         return $this->project->proposals()
             ->orderBy('hours')
+            ->orderBy('created_at')
             ->paginate($this->qtd);
     }
     #[Computed()]
