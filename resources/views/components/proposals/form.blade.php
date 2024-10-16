@@ -4,6 +4,12 @@
             <div class="text-[28px]">Envie sua proposta</div>
             <div class="text-[16px] text-[#C3C3D1]">Faça sua oferta em horas mensais que você pode contribuir com o
                 projeto.</div>
+            @error('status')
+            <div class="text-red-600 text-sm mt-1">
+                {{$message}}
+            </div>
+            @enderror
+
         </div>
         <div class="flex gap-4">
             <div class="w-2/3 gap-2 flex flex-col">

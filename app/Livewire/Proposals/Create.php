@@ -42,22 +42,28 @@ class Create extends Component
             return;
         }
 
+        if ($this->project->status->value != 'open') {
+            $this->addError('status', 'Este projeto não está mais aberto para propostas.');
+            return;
+        }
+
+
         DB::transaction(function () {
 
             $proposal = $this->project->proposals()->updateOrCreate(
                 ['email' => $this->email],
-                ['hours' => $this->hours]
+                ['hours' => $this->hours],
             );
 
             $this->arrangePositions($proposal);
 
 
             $this->dispatch('proposal::created');
+
+            $this->project->author->notify(new NewProposal($this->project));
+
+            $this->modal = false;
         });
-
-        $this->project->author->notify(new NewProposal($this->project));
-
-        $this->modal = false;
     }
 
     public function arrangePositions(Proposal $proposal)
